@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-south1-docker.pkg.dev/$PROJECT_ID/ecommerce-repo/ecommerce-backend:$SHORT_SHA'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'asia-south1-docker.pkg.dev/$PROJECT_ID/ecommerce-repo/ecommerce-backend:$SHORT_SHA'
+
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/ecommerce-repo/ecommerce-backend:$SHORT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
